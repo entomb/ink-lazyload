@@ -25,7 +25,7 @@ You can set an URL to be loaded by ajax when this element hits the screen. all .
 <div class="lazy"  data-lazyload="/content/highlights/15">
 ```
 
-Using `data-lazyparent` the content is loaded the the `parentNode` instead and the * div.lazy` is then removed
+Using `data-lazyparent` the content is loaded the the `parentNode` instead and the `div.lazy` is then removed
 ```html
 <div class="lazy"  data-lazyload="/content/highlights/15" data-lazyparent>
 ```
