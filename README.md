@@ -92,3 +92,15 @@ you can use `onLazyLoad` to delegate observers
 
     });
 ```
+
+
+##Middleware
+If you want to do any kind of transformations before setting the innerHTML, or if you content is JSON and you need to parse.
+```html
+<div class="lazy" data-lazyload="/content/highlights" data-lazymiddleware="fooBar"></div>
+<script type="text/javascript">
+function fooBar(element,content){
+    return "<h1>foo</h1>"+content;
+}
+</script>
+```
