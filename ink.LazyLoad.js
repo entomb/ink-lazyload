@@ -234,6 +234,10 @@ Ink.createExt('LazyLoad', 1,  [ 'Ink.Dom.Event_1',
             InkCSS.removeClassName(elem,'lazy-loading');
 
 
+            if(InkElement.hasAttribute(elem, 'data-lazymiddleware')){
+                content = Ink.bindMethod(window,InkElement.data(elem).lazymiddleware,elem,content)(elem,content);
+            }
+
             if(InkElement.hasAttribute(elem, 'data-lazyparent')){
                 var old_elem = elem;
                 elem = elem.parentElement;
@@ -302,4 +306,3 @@ Ink.createExt('LazyLoad', 1,  [ 'Ink.Dom.Event_1',
 
     return LazyLoad;
 });
-
