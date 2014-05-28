@@ -1,6 +1,18 @@
 #Ink.EXT.LazyLoad
 A true async lazy loader made by a lazy coder.
 
+###options
+- `delay (int)` throttle delay to the onScroll event in seconds
+- `failretry (bool)` should LazyLoad retry failed ajax requests?
+- `faildelay (int)` seconds to wait before retrying failed requests
+- `debug (bool)` will show alot of console.log debug data
+
+###data-attributes
+- `data-lazyload` the URL for the ajax request
+- `data-lazymiddleware` a function that parses the response before setting it as teh innerHTML
+- `data-lazyparent` if set, will append to the element's parent instead fo setting the innerHTML
+- `data-lazycallback` a callback to be called AFTER the element is loaded
+
 
 ##Instance
 Load LazyLoad as an Ink plugin
@@ -20,7 +32,7 @@ Load LazyLoad as an Ink plugin
 
 
 ##to-be-loaded elements
-You can set an URL to be loaded by ajax when this element hits the screen. all .lazy elements will be watched
+You can set an URL to be loaded by ajax when this element hits the screen. all `.lazy` elements will be watched
 ```html
 <div class="lazy"  data-lazyload="/content/highlights/15">
 ```
@@ -95,7 +107,7 @@ you can use `onLazyLoad` to delegate observers
 
 
 ##Middleware
-If you want to do any kind of transformations before setting the innerHTML, or if you content is JSON and you need to parse.
+If you want to do any kind of transformations before setting the innerHTML, or if your content is JSON and you need to parse it, set a middleware function.
 ```html
 <div class="lazy" data-lazyload="/content/highlights" data-lazymiddleware="fooBar"></div>
 <script type="text/javascript">
