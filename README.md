@@ -19,7 +19,7 @@ Load LazyLoad as an Ink plugin
 ```
 
 
-##Marking to-be-loaded elements
+##to-be-loaded elements
 You can set an URL to be loaded by ajax when this element hits the screen. all .lazy elements will be watched
 ```html
 <div class="lazy"  data-lazyload="/content/highlights/15">
@@ -30,7 +30,7 @@ Using `data-lazyparent` the content is loaded the the `parentNode` instead and t
 <div class="lazy"  data-lazyload="/content/highlights/15" data-lazyparent>
 ```
 
-##EVENTS
+##Events
 LazyLoad throws custom events using `Ink.Dom.Event` that can later be observed
 
 - `lazy-loading` fired when the element is being loaded
