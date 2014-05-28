@@ -1,21 +1,9 @@
 #Ink.EXT.LazyLoad
 A true async lazy loader made by a lazy coder.
 
-###options
-- `delay (int)` throttle delay to the onScroll event in seconds
-- `failretry (bool)` should LazyLoad retry failed ajax requests?
-- `faildelay (int)` seconds to wait before retrying failed requests
-- `debug (bool)` will show alot of console.log debug data
-
-###data-attributes
-- `data-lazyload` the URL for the ajax request
-- `data-lazymiddleware` a function that parses the response before setting it as teh innerHTML
-- `data-lazyparent` if set, will append to the element's parent instead fo setting the innerHTML
-- `data-lazycallback` a callback to be called AFTER the element is loaded
-
 
 ##Instance
-Load LazyLoad as an Ink plugin
+Load as an Ink plugin. only 1 instance should be running at a time.
 ```html
 <script type="text/javascript" src="/js/ink.LazyLoad.js"></script>
 <script type="text/javascript">
@@ -29,6 +17,20 @@ Load LazyLoad as an Ink plugin
     });
 </script>
 ```
+
+
+###options
+- `delay (int)` throttle delay to the onScroll event in seconds
+- `failretry (bool)` should LazyLoad retry failed ajax requests?
+- `faildelay (int)` seconds to wait before retrying failed requests
+- `debug (bool)` will show alot of console.log debug data
+
+###data-attributes
+- `data-lazyload` the URL for the ajax request
+- `data-lazymiddleware` a function that parses the response before setting it as teh innerHTML
+- `data-lazyparent` if set, will append to the element's parent instead fo setting the innerHTML
+- `data-lazycallback` a callback to be called AFTER the element is loaded
+
 
 
 ##to-be-loaded elements
