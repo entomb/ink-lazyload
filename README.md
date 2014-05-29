@@ -107,6 +107,21 @@ you can use `onLazyLoad` to delegate observers
     });
 ```
 
+##data-lazycallback callbacks
+you can use `data-lazycallback` set simple callbacks
+
+```html
+<div class="lazy foo"  data-lazyload="/content/foo" data-lazycallback="loadFoo">
+<div class="lazy bar"  data-lazyload="/content/bar" data-lazycallback="loadBar">
+<script type="text/javascript">
+    function loadFoo(element){
+        //called on lazy.foo loaded
+    }
+    function loadBar(element){
+        //called on lazy.bar loaded
+    }
+</script>
+````
 
 ##Middleware
 If you want to do any kind of transformations before setting the innerHTML, or if your content is JSON and you need to parse it, set a middleware function.
