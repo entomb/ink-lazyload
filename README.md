@@ -1,4 +1,4 @@
-#Ink.EXT.LazyLoad
+#[Ink](https://github.com/sapo/ink).EXT.LazyLoad
 A true async lazy loader made by a lazy coder.
 
 
