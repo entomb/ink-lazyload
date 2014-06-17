@@ -3,7 +3,7 @@
  * A true async lazy loader made by a lazy coder.
  *
  * @module Ink.EXT.LazyLoad_1
- * @author jtavares <Jonathan.tavares@telecom.pt>
+ * @author jtavares <Jonathan.tavares[at]telecom.pt>
  * @version 1
  */
 Ink.createExt('LazyLoad', 1,  [ 'Ink.Dom.Event_1',
@@ -11,7 +11,7 @@ Ink.createExt('LazyLoad', 1,  [ 'Ink.Dom.Event_1',
                                 'Ink.Dom.Element_1',
                                 'Ink.Dom.Css_1',
                                 'Ink.Net.Ajax_1',
-                                'Ink.Util.Array_1' ], function( InkEvent, InkCommon, InkElement, InkCSS, InkAjax, InkArray ){
+                                'Ink.Util.Array_1' ], function( InkEvent, InkCommon, InkElement, InkCss, InkAjax, InkArray ){
 
 
 
@@ -26,8 +26,6 @@ Ink.createExt('LazyLoad', 1,  [ 'Ink.Dom.Event_1',
      * @param {Boolean}     [options.failretry] retry failed loads
      * @param {Integer}     [options.faildelay] seconds to wait before retrying fails
      * @param {Boolean}     [options.debug] console.log debug data
-     *
-     * @sample Ink_UI_Spy_1.html
      */
     var LazyLoad = function(options) {
         this.options = InkCommon.options('LazyLoad', {
@@ -55,6 +53,9 @@ Ink.createExt('LazyLoad', 1,  [ 'Ink.Dom.Event_1',
         */
         log:  function(){
             if(this.options.debug){
+                if(typeof arguments[0] == 'string'){
+                    arguments[0] = 'LazyLoad > '+arguments[0];
+                }
                 //Ink.bindMethod(console,'log',arguments)()
                 console.log.apply(console,arguments)
             }
@@ -72,6 +73,7 @@ Ink.createExt('LazyLoad', 1,  [ 'Ink.Dom.Event_1',
             this._registerLazyLoads();
             this._retryTimeout = false;
             InkEvent.observe(window, 'scroll', InkEvent.throttle(Ink.bindEvent(this._onScroll,this),this.options.delay));
+
         },
 
 
@@ -109,7 +111,7 @@ Ink.createExt('LazyLoad', 1,  [ 'Ink.Dom.Event_1',
         /**
          * Public alias to the _registerLazyLoads function.
          *
-         * @method _registerLazyLoads
+         * @method register
          * @public
         */
         register: function(){
@@ -146,7 +148,7 @@ Ink.createExt('LazyLoad', 1,  [ 'Ink.Dom.Event_1',
          * @private
         */
         _isVisible: function(elem){
-            return InkElement.inViewport(elem,{partial:true, margin:25});
+            return InkElement.inViewport(elem,{partial:true, margin:25}) && InkElement.isVisible(elem);
         },
 
 
@@ -192,8 +194,8 @@ Ink.createExt('LazyLoad', 1,  [ 'Ink.Dom.Event_1',
             this.log('> _loadingStart');
             InkEvent.fire(elem, 'lazy-loading');
 
-            InkCSS.removeClassName(elem,'lazy');
-            InkCSS.addClassName(elem,'lazy-loading');
+            InkCss.removeClassName(elem,'lazy');
+            InkCss.addClassName(elem,'lazy-loading');
         },
 
 
@@ -206,8 +208,8 @@ Ink.createExt('LazyLoad', 1,  [ 'Ink.Dom.Event_1',
         */
         _loadingError: function(elem){
             this.log(' AJAX: error :(');
-            InkCSS.addClassName(elem,'lazy-failed');
-            InkCSS.removeClassName(elem,'lazy-loading');
+            InkCss.addClassName(elem,'lazy-failed');
+            InkCss.removeClassName(elem,'lazy-loading');
 
             InkEvent.fire(elem, 'lazy-failed');
 
@@ -230,8 +232,8 @@ Ink.createExt('LazyLoad', 1,  [ 'Ink.Dom.Event_1',
         */
         _loadingSuccess: function(elem,content){
             this.log(' AJAX: yay! :)');
-            InkCSS.addClassName(elem,'lazy-loaded');
-            InkCSS.removeClassName(elem,'lazy-loading');
+            InkCss.addClassName(elem,'lazy-loaded');
+            InkCss.removeClassName(elem,'lazy-loading');
 
 
             if(InkElement.hasAttribute(elem, 'data-lazymiddleware')){
@@ -279,8 +281,8 @@ Ink.createExt('LazyLoad', 1,  [ 'Ink.Dom.Event_1',
 
             var findLazyErrors = Ink.ss('.lazy-failed');
             InkArray.each(findLazyErrors,function(elem){
-                InkCSS.removeClassName(elem,'lazy-failed');
-                InkCSS.addClassName(elem,'lazy');
+                InkCss.removeClassName(elem,'lazy-failed');
+                InkCss.addClassName(elem,'lazy');
             });
 
             return this._registerLazyLoads();
