@@ -96,9 +96,7 @@ Ink.createExt('LazyLoad', 1,  [ 'Ink.Dom.Event_1',
 
                 if(InkElement.hasAttribute(elem, 'data-lazyload')){
                     this._lazyElements.push(elem);
-                    this._lazyElements = this._lazyElements.filter(function (e, i, arr) {
-                        return arr.lastIndexOf(e) === i;
-                    });
+                    this._lazyElements = InkArray.unique(this._lazyElements);
 
 
                     this.log('register '+InkElement.data(elem).lazyload);
@@ -214,10 +212,7 @@ Ink.createExt('LazyLoad', 1,  [ 'Ink.Dom.Event_1',
             InkEvent.fire(elem, 'lazy-failed');
 
             this._lazyErrors.push(elem);
-            this._lazyErrors = this._lazyErrors.filter(function (e, i, arr) {
-                            return arr.lastIndexOf(e) === i;
-                        });
-
+            this._lazyErrors = InkArray.unique(this._lazyErrors);
 
         },
 
