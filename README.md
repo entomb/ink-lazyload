@@ -3,7 +3,7 @@ A true async lazy loader made by a lazy coder.
 
 
 ##Instance
-Load as an Ink plugin. only 1 instance should be running at a time.
+Load it as an Ink plugin. only 1 instance should be running at any time.
 ```html
 <script type="text/javascript" src="/js/ink.LazyLoad.js"></script>
 <script type="text/javascript">
@@ -57,7 +57,6 @@ Besides firing events, LazyLoad also sets the className of the element so you ca
         width: 100%;
     }
 
-
     .lazy-loading{
         width: 100%;
         background-image: url('/imgs/load.gif');
@@ -108,7 +107,7 @@ you can use `onLazyLoad` to delegate observers
 ```
 
 ##data-lazycallback callbacks
-you can use `data-lazycallback` set simple callbacks
+you can use `data-lazycallback` to set simple callbacks (must be on the window scope)
 
 ```html
 <div class="lazy foo"  data-lazyload="/content/foo" data-lazycallback="loadFoo">
